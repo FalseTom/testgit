@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+      <meta name="format-detection" content="telephone=no">
+		<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+		<title>卖车页面</title>
+		<!-- Bootstrap预定义的CSS样式、jQuery核心类库、Bootstrap类库-->
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+		<script type="text/javascript" src="js/jquery-2.2.0.js" ></script>
+		<!-- jq引用必须在bs之前-->
+		<script type="text/javascript" src="js/bootstrap.min.js" ></script>
+		<script type="text/javascript">
+			window.onload = function() {
+				resetPage();
+			}
+			window.onresize = function() {
+				resetPage();
+			}
+			function resetPage() {
+				var deviceWidth = document.documentElement.clientWidth,
+				originWidth = document.getElementById("b")
+				scale = deviceWidth / originWidth.clientWidth;
+				document.body.style.zoom = scale;
+			}	
+
+		</script>
+		<style type="text/css">
+			body{
+				width: 100%;
+				min-width: 700px;
+			}
+			*{
+				margin:0;
+				padding:0;
+			}
+			.header{
+				width: 1200px;
+				height: 50px;
+				margin: 0 auto;
+				background-color:#FFFFFF;
+			}
+			.right {
+				width: 360px;
+				height:40px;
+				padding: 0;
+				background-color: #FFFFFF;
+			}
+			.right li{
+				float: left;
+				width: 90px;
+				height: 37px;
+				list-style: none;
+			}
+			#active{
+				border-bottom: solid 3px #22ac38;
+			}			
+			.right li a{
+				display:inline-block;
+				width: 90px;
+				height: 37px;
+				text-align: center;
+				text-decoration: none;
+				font-family: arial, helvetica, sans-serif;
+				color: #000000;
+				line-height: 40px;
+				font-size: 14px;
+			}
+			.tel{
+			    color: #181818;
+				float: right;
+			    font-size: 12px;
+			    line-height: 16px;
+			    padding: 0 15px 0 0;
+			    margin-top: -26px;
+			    margin-right: 110px;
+			    border-right: 1px solid #181818;	
+			}
+			.pic{
+				float:right;
+				font-size: 13px;
+			    padding: 0 0 0 5px;
+			    margin-top: -26px;
+			    margin-right: 45px;
+			}
+			.contents{
+				width: 1200px;
+				height: auto;
+				margin: 30px auto;
+				padding: 40px 30px;
+				position: relative; 
+			}
+			.content{
+				width: 400px;
+				padding: 0px auto;
+				margin: 20px auto;
+			}
+			input{
+				margin: 0px 60px;
+				height: 30px;
+				outline: none;
+			}
+			input[type="submit"],input[type="reset"]{
+			    background-color: #F5F5F5;   
+			    border: 1px solid rgba(0, 0, 0, 0.1);
+			    border-radius: 2px 2px 2px 2px;
+			    color: #666666;
+			    cursor: default;
+			    font-family: arial,sans-serif;
+			    font-size: 16px;
+			    height: 30px;
+			    line-height: 30px;
+			    padding: 0 8px;
+			    text-align: center;
+				margin-left: 50px;
+			}
+			#file{
+				margin: -20px 120px 0px 120px;
+			}
+			.button{
+				width: 400px;
+				height: 40px;
+				margin: 0px auto;
+				padding-top:20px ;
+			}
+			.footer{
+				width: 100%;
+				margin: 20px auto 0px;
+				padding: 20px auto 0px;
+				background-color: #2a2c37;
+			}
+			.footer img{
+				width: 100px;
+				height: 100px;
+				margin: 30px 10px ;
+			}
+			.foot{
+				position: relative;
+				width: 1200px;
+				margin: 0 auto;
+			}
+			.phone{
+				color: #B8B8B8;
+				font-size: 13px;
+				display: inline-block;
+				position: absolute;
+				top: 30px;
+				left: 140px;
+			}
+			
+			.info{
+				color: #B8B8B8;
+				font-size: 12px;
+				float:right;	
+				margin-left: 50px;
+				margin-top: 30px;
+			}
+			.code{
+				width: 200px;
+				height: 160px;
+				margin: 30px 30px;
+			}
+			.code img{
+				max-width: 100%;
+			}
+			#qq{
+				position: absolute;
+				top: -30px;
+				left: 500px;	
+			}
+			#wechart{
+				position: absolute;
+				top: -30px;
+				left: 650px;	
+			}
+		</style>
+	
+	</head>
+	<body id="b">
+		<div class="header navbar-fixed-top">
+			<ul class="right">
+				<li><a href="">首页</a></li>
+				<li><a href="buy_car.html">我要买车</a></li>
+				<li ><a id="active" href="">我要卖车</a></li>
+				<li><a href="">联系我们</a></li>
+			</ul>
+			<div class="tel">热线电话：400-820-8320</div>
+			<span class="pic glyphicon glyphicon-user" aria-hidden="true">&nbsp;登录</span>
+		</div>
+		
+		<div class="contents">
+			<form name="表单实例" method="post" action="">
+				
+				<div class="content">
+					<span>爱车品牌</span>
+					<input name="brand" type="text" id="brand" size="20" value="在此输入爱车品牌"  onfocus="if(value=='在此输入爱车品牌') {value=''}" onblur="if (value=='') {value='在此输入爱车品牌'}">
+				</div>
+				
+				<div class="content">
+					<span>爱车车系</span>
+					<input name="Vehicle" type="text" id="Vehicle" size="20" value="在此输入爱车车系"  onfocus="if(value=='在此输入爱车车系') {value=''}" onblur="if (value=='') {value='在此输入爱车车系'}">
+				</div>
+				<div class="content">
+					<span>爱车车型</span>
+					<input name="model" type="text" id="model" size="20" value="在此输入爱车车型"  onfocus="if(value=='在此输入爱车车型') {value=''}" onblur="if (value=='') {value='在此输入爱车车型'}">
+				</div>
+				<div class="content">
+					<span>爱车车况</span>
+					<input name="mile" type="text" id="model" size="20" value="在此输入行驶里程"  onfocus="if(value=='在此输入行驶里程') {value=''}" onblur="if (value=='') {value='在此输入行驶里程'}">
+				</div>
+				<div class="content">
+					<span style="color: #FFFFFF;">上牌时间</span>
+					<input name="time" type="text" id="time" size="20" value="在此输入上牌时间"  onfocus="if(value=='在此输入上牌时间') {value=''}" onblur="if (value=='') {value='在此输入上牌时间'}">
+				</div>
+				<div class="content">
+					<span style="color: #FFFFFF;">爱车排量</span>
+					<input name="displacement" type="text" id="displacement" size="20" value="在此输入爱车排量"  onfocus="if(value=='在此输入爱车排量') {value=''}" onblur="if (value=='') {value='在此输入爱车排量'}">
+				</div>
+				<div class="content">
+					<span style="color: #FFFFFF;">车变速箱</span>
+					<input name="transmission" type="text" id="transmission" size="20" value="在此输入变速箱类型"  onfocus="if(value=='在此输入变速箱类型') {value=''}" onblur="if (value=='') {value='在此输入变速箱类型'}">
+				</div>
+				<div class="content">	
+					<span>家庭住址</span>
+					<input name="home" type="text" id="home" size="20" value="在此输入家庭住址"  onfocus="if(value=='在此输入家庭住址') {value=''}" onblur="if (value=='') {value='在此输入家庭住址'}">
+				</div>	
+				<div class="content">	
+					<span>爱车买价</span>
+					<input name="buy_price" type="text" id="buy_price" size="20" value="在此输入爱车买价"  onfocus="if(value=='在此输入爱车买价') {value=''}" onblur="if (value=='') {value='在此输入爱车买价'}">
+				</div>	
+				<div class="content">	
+					<span>期待卖价</span>
+					<input name="sale_price" type="text" id="sale_price" size="20" value="在此输入期待卖价"  onfocus="if(value=='在此输入期待卖价') {value=''}" onblur="if (value=='') {value='在此输入期待卖价'}">
+				</div>
+				<div class="content">	
+					<span>爱车照片</span>
+					<input id="file" type="file" accept="image/png,image/gif" name="file" multiple="multiple" accept="image/png,image/jpg"/>
+
+				</div>
+				<div class="button">
+					<input id="submit" type="submit" name="submit1" value="提交" class="ann">
+					<input id="reset"  type="reset" name="submit2" value="重置" class="ann">
+				</div>
+				
+				
+			</form>
+		</div>
+		
+		
+		<div class="footer">
+			<div class="foot">
+				<img src="img/图片1.png">
+				<span class="phone">
+					咨询电话：400-820-8320&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(周一至周日8:00-21:00)<br/>
+					服务监督电话：400-066-8780&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(周一至周日9:00-18:00)<br/><br/>
+					互联网违法或不良信息举报联系方式：<br/>
+					邮箱：jubao@jiangcai.com&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;电话：010-8919-1670
+				</span>
+				<div id="qq" class="code">
+					<img src="img/qq.jpg"/>
+				</div>
+				<div id="wechart" class="code">
+					<img src="img/weixin.jpg"/>
+				</div>
+				<span class="info">
+					关于瓜子&nbsp;&nbsp;集团介绍&nbsp;&nbsp;加入我们&nbsp;&nbsp;联系我们&nbsp;&nbsp;服务保障<br/>
+					隐私声明&nbsp;&nbsp;服务条款&nbsp;&nbsp;营业执照&nbsp;&nbsp;环评公示<br /><br />
+					Copyright&nbsp;&nbsp;2020&nbsp;&nbsp;www.jiangcai.com&nbsp;&nbsp;AII&nbsp;&nbsp;Rights&nbsp;&nbsp;Reserved
+				</span>
+			</div>	
+		</div>
+		
+	</body>
+</html>

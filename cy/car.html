@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+      <meta name="format-detection" content="telephone=no">
+		<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+		<title>车辆详情界面</title>
+		<!-- Bootstrap预定义的CSS样式、jQuery核心类库、Bootstrap类库-->
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+		<script type="text/javascript" src="js/jquery-2.2.0.js" ></script>
+		<!-- jq引用必须在bs之前-->
+		<script type="text/javascript" src="js/bootstrap.min.js" ></script>
+		<script type="text/javascript">
+			window.onload = function() {
+				resetPage();
+			}
+			window.onresize = function() {
+				resetPage();
+			}
+			function resetPage() {
+				var deviceWidth = document.documentElement.clientWidth,
+				originWidth = document.getElementById("b")
+				scale = deviceWidth / originWidth.clientWidth;
+				document.body.style.zoom = scale;
+			}
+			
+
+		</script>
+		<style type="text/css">
+			body{
+				width: 100%;
+				min-width: 700px;
+			}
+			*{
+				margin:0;
+				padding:0;
+			}
+			.header{
+				width: 1200px;
+				height: 50px;
+				margin: 0 auto;
+				background-color:#FFFFFF;
+			}
+			.right {
+				width: 360px;
+				height:40px;
+				padding: 0;
+				background-color: #FFFFFF;
+			}
+			.right li{
+				float: left;
+				width: 90px;
+				height: 37px;
+				list-style: none;
+			}
+			#active{
+				border-bottom: solid 3px #22ac38;
+			}			
+			.right li a{
+				display:inline-block;
+				width: 90px;
+				height: 37px;
+				text-align: center;
+				text-decoration: none;
+				font-family: arial, helvetica, sans-serif;
+				color: #000000;
+				line-height: 40px;
+				font-size: 14px;
+			}
+			.tel{
+			    color: #181818;
+				float: right;
+			    font-size: 12px;
+			    line-height: 16px;
+			    padding: 0 15px 0 0;
+			    margin-top: -26px;
+			    margin-right: 110px;
+			    border-right: 1px solid #181818;	
+			}
+			.pic{
+				float:right;
+				font-size: 13px;
+			    padding: 0 0 0 5px;
+			    margin-top: -26px;
+			    margin-right: 45px;
+			}
+			.content{
+				width: 1200px;
+				height: auto;
+				margin: 30px auto;
+				padding: 40px 30px;
+				position: relative;
+			}
+			#right_car{
+				width: 604px;
+				height: 402px;
+				overflow: hidden;
+				position: relative;
+				margin: 0;
+			}
+			#lunbo{
+				width: 1812px;
+				height: 402px;
+				position: relative;
+				z-index: 99;
+			}
+			#lunbo img {
+				max-width: 100%;
+				height: auto;
+				float: left;
+				margin:0 auto;
+			}
+			.left_arr{
+				float: left;
+				position: absolute;
+				top: 160px;
+				left: 10px;
+				list-style: none;
+				z-index: 999;
+			}
+			.right_arr{
+				list-style: none;
+				float: right;
+				position: absolute;
+				top: 160px;
+				right: 10px;
+				z-index: 999;
+			}
+			#list{
+				width: 500px;
+				height: 400px;
+				position: absolute;
+				top: 40px;
+				left: 680px;
+			}
+			#list span{
+				display: block;
+				width: 500px;
+				height: 40px;
+				margin: 20px auto;
+				font-size: 24px;
+				text-align: center;
+			}
+			#info{
+				width: 500px;
+				height: 50px;
+			}
+			#info li{
+				width: 124px;
+				height: 50px;
+				display: block;
+				float: left;
+			}
+			#info li a{
+				width: 124px;
+				height: 25px;
+				display: block;
+				text-align: center;
+				line-height: 25px;
+				text-decoration: none;
+				color: #000000;
+			}
+			#info li:not(:last-child){
+				border-right: 2px solid lightgrey;
+			}
+			.up{
+				font-size: 20px;
+			}
+			#buy{
+				width: 100px;
+				height: 40px;
+				float: left;
+				line-height: 40px;
+				font-size: 26px;
+				color: #FFFFFF;
+				margin: 40px 26px 0px;
+				background-color: orange;
+				text-align: center;
+				cursor: pointer;
+			}
+			#cut{
+				width: 100px;
+				height: 40px;
+				float: left;
+				line-height: 40px;
+				font-size: 26px;
+				color: #FFFFFF;
+				margin: 40px 26px 0px;
+				background-color: limegreen;
+				text-align: center;		
+				cursor: pointer;
+			}
+			#req{
+				width: 100px;
+				height: 40px;
+				float: left;
+				line-height: 40px;
+				font-size: 26px;
+				color: limegreen;
+				margin: 40px 26px 0px;
+				text-align: center;
+				border: 1px solid limegreen;
+				cursor: pointer;
+			}
+			.footer{
+				width: 100%;
+				margin: 20px auto 0px;
+				padding: 20px auto 0px;
+				background-color: #2a2c37;
+			}
+			.footer img{
+				width: 100px;
+				height: 100px;
+				margin: 30px 10px ;
+			}
+			.foot{
+				position: relative;
+				width: 1200px;
+				margin: 0 auto;
+			}
+			.phone{
+				color: #B8B8B8;
+				font-size: 13px;
+				display: inline-block;
+				position: absolute;
+				top: 30px;
+				left: 140px;
+			}
+			
+			.info{
+				color: #B8B8B8;
+				font-size: 12px;
+				float:right;	
+				margin-left: 50px;
+				margin-top: 30px;
+			}
+			.code{
+				width: 200px;
+				height: 160px;
+				margin: 30px 30px;
+			}
+			.code img{
+				max-width: 100%;
+			}
+			#qq{
+				position: absolute;
+				top: -30px;
+				left: 500px;	
+			}
+			#wechart{
+				position: absolute;
+				top: -30px;
+				left: 650px;	
+			}
+		</style>
+	
+	</head>
+	<body id="b">
+		<div class="header navbar-fixed-top">
+			<ul class="right">
+				<li><a href="">首页</a></li>
+				<li><a href="buy_car.html">我要买车</a></li>
+				<li><a href="sale_car.html">我要卖车</a></li>
+				<li><a href="">联系我们</a></li>
+			</ul>
+			<div class="tel">热线电话：400-820-8320</div>
+			<span class="pic glyphicon glyphicon-user" aria-hidden="true">&nbsp;登录</span>
+		</div>
+		
+		<div class="content">
+			<div id="right_car">
+				<div id="lunbo">
+					<img src="https://image.guazistatic.com/gz01190506/15/50/25f80b2b06fe7b99c568e8d06027d41c.jpg@base@tag=imgScale&w=600&h=400&c=1&m=2&q=88"/>
+					<img src="https://image.guazistatic.com/gz01190506/15/50/12de681caa88c79243166bfeaedc22d8.jpg@base@tag=imgScale&w=600&h=400&c=1&m=2&q=88">
+					<img src="https://image.guazistatic.com/gz01190506/15/50/25f80b2b06fe7b99c568e8d06027d41c.jpg@base@tag=imgScale&w=600&h=400&c=1&m=2&q=88">
+				</div>
+				
+		    	<ul class="dir">
+		    		<li class="left_arr"><img src="img/banner_left.png"/></li>
+		    		<li class="right_arr"><img src="img/banner_right.png"/></li>
+		    	</ul>
+			</div>
+			<div id="list">
+				<span id="car_name">
+					纳智捷 优6 SUV 2017款 改款 1.6T 新创型			
+				</span>
+				<ul id="info">
+					<li id="time"><a class="up">2018年</a><a class="down">上牌时间</a></li>
+					<li id="mile"><a class="up">1.53万公里</a><a class="down">表现里程</a></li>
+					<li id="displacement"><a class="up">1.6T</a><a class="down">排量</a></li>
+					<li id="transmission"><a class="up">自动</a><a class="down">变速箱</a></li>
+				</ul>
+				<div id="buy">砍价</div>
+				<div id="cut">购买</div>
+				<div id="req">咨询</div>	
+			</div>
+		</div>
+		
+		
+		<div class="footer">
+			<div class="foot">
+				<img src="img/图片1.png">
+				<span class="phone">
+					咨询电话：400-820-8320&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(周一至周日8:00-21:00)<br/>
+					服务监督电话：400-066-8780&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(周一至周日9:00-18:00)<br/><br/>
+					互联网违法或不良信息举报联系方式：<br/>
+					邮箱：jubao@jiangcai.com&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;电话：010-8919-1670
+				</span>
+				<div id="qq" class="code">
+					<img src="img/qq.jpg"/>
+				</div>
+				<div id="wechart" class="code">
+					<img src="img/weixin.jpg"/>
+				</div>
+				<span class="info">
+					关于瓜子&nbsp;&nbsp;集团介绍&nbsp;&nbsp;加入我们&nbsp;&nbsp;联系我们&nbsp;&nbsp;服务保障<br/>
+					隐私声明&nbsp;&nbsp;服务条款&nbsp;&nbsp;营业执照&nbsp;&nbsp;环评公示<br /><br />
+					Copyright&nbsp;&nbsp;2020&nbsp;&nbsp;www.jiangcai.com&nbsp;&nbsp;AII&nbsp;&nbsp;Rights&nbsp;&nbsp;Reserved
+				</span>
+			</div>	
+		</div>
+		
+	</body>
+	<script  src="js/jquery-1.12.0.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		
+		var t = i = 0;
+		var count;
+		$(function(){
+			//轮播效果
+			var num=1;
+			count = $("#lunbo img").length;//2
+			$("#lunbo img").not(":first").hide();//加载出来时，除了第一张显示，其余的隐藏
+			t = setInterval(showAuto, 3000); //计时器
+			//上一张
+			$(".dir li").first().click(function(){
+	    		i = i >= 0 ? --i : count - 1;
+	    		$("#lunbo img").eq(i).fadeIn(200).siblings().fadeOut(200);//与当前li索引匹配的图片显示
+	    	}).hover(function(){clearInterval(t)},function(){t = setInterval("showAuto()", 3000);});
+	    	//下一张 
+	    	$(".dir li").last().click(function(){
+	    		i = i >=(count - 1) ? 0 : ++i;
+	    		$("#lunbo img").eq(i).fadeIn(200).siblings().fadeOut(200);//与当前li索引匹配的图片显示
+	    	}).hover(function(){clearInterval(t)},function(){t = setInterval("showAuto()", 3000);});
+			
+		});
+		
+		function showAuto(){//确定图片序号
+			i = i >=(count - 1) ? 0 : ++i;
+		}
+		
+	</script>
+</html>

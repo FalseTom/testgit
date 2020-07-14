@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+      	<meta name="format-detection" content="telephone=no">
+		<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+		<title>买车页面</title>
+		<!-- Bootstrap预定义的CSS样式、jQuery核心类库、Bootstrap类库-->
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+		<script type="text/javascript" src="js/jquery-2.2.0.js" ></script>
+		<!-- jq引用必须在bs之前-->
+		<script type="text/javascript" src="js/bootstrap.min.js" ></script>
+		<script type="text/javascript">
+			window.onload = function() {
+				resetPage();
+			}
+			window.onresize = function() {
+				resetPage();
+			}
+		
+			function resetPage() {
+				var deviceWidth = document.documentElement.clientWidth,
+				originWidth = document.getElementById("b")
+				scale = deviceWidth / originWidth.clientWidth;
+				document.body.style.zoom = scale;
+			}
+		</script>
+		<style type="text/css">
+			body{
+				width: 100%;
+				min-width: 700px;
+			}
+			*{
+				margin:0;
+				padding:0;
+			}
+			.header{
+				width: 1200px;
+				height: 50px;
+				margin: 0 auto;
+				background-color:#FFFFFF;
+			}
+			.right {
+				width: 360px;
+				height:40px;
+				padding: 0;
+				background-color: #FFFFFF;
+			}
+			.right li{
+				float: left;
+				width: 90px;
+				height: 37px;
+				list-style: none;
+			}
+			#active{
+				border-bottom: solid 3px #22ac38;
+			}			
+			.right li a{
+				display:inline-block;
+				width: 90px;
+				height: 37px;
+				text-align: center;
+				text-decoration: none;
+				font-family: arial, helvetica, sans-serif;
+				color: #000000;
+				line-height: 40px;
+				font-size: 14px;
+				cursor: pointer;
+			}
+			.tel{
+			    color: #181818;
+				float: right;
+			    font-size: 12px;
+			    line-height: 16px;
+			    padding: 0 15px 0 0;
+			    margin-top: -26px;
+			    margin-right: 110px;
+			    border-right: 1px solid #181818;	
+			}
+			.pic{
+				float:right;
+				font-size: 13px;
+			    padding: 0 0 0 5px;
+			    margin-top: -26px;
+			    cursor: pointer;
+			    margin-right: 45px;
+			}
+			#photo{
+				margin: 45px auto 20px;
+				width: 1200px;
+			}
+			#photo img{
+				max-width: 1200px;
+			}
+			.select{
+				width: 1200px;
+				height: 120px;
+				margin: 5px auto;
+				border-right: 1px solid lightgrey;
+				border-top: 1px solid lightgrey;
+			}
+			.clearfix{
+				border-bottom: 1px solid lightgrey;
+				height: 30px;
+				margin-bottom: 0px;
+			}
+			.clearfix dt{
+				color: #7a838d;
+				font-size: 14px;
+				background-color: #FAFAFA;
+				height: 29px;
+				width: 60px;
+				text-align: center;
+				line-height: 29px;
+				position: absolute;
+			}
+			.clearfix .a-box{
+				width: 800px;
+				height: 30px;
+				position: relative;
+				top: 5px;
+				left: 65px;
+			}
+			
+			.a-box button:hover{
+				color: rgb(34, 172, 56);
+			}
+			.a-box .active{
+				color: #FFFFFF;
+				background-color: #22ac38;
+			}
+			
+			.a-box select{
+				margin-left: 8px;
+			}
+			.a-box button{
+				cursor: pointer;
+				text-align: center;
+				text-decoration: none;
+				color: #495056;
+				padding: 0px 8px;
+				margin: 0px 8px;
+				outline: none;
+				border: 0;
+				background-color: #FFFFFF;
+			}
+			.a-box form{
+				margin: 2px 8px 0px 8px;
+				margin-top: -23px;
+				margin-left:650px ;
+			}
+			#confirm{
+				outline: none;
+				margin-left: 10px;
+				padding: 0 8px;
+				border: 1px solid #22AC38;
+				background-color: #F6FCF7;
+			}
+			.sort{
+				width: 1200px;
+				height: auto;
+				margin: 0px auto ;
+			}
+			.sort ul{
+				width: 1200px;
+				height: 20px;
+				list-style: none;
+				margin-top: 10px;
+				margin-left: 920px;
+			}
+			.sort li{
+				width: 70px;
+				height: 20px;
+				float: left;
+			}
+			.sort li a{
+				width: 70px;
+				height: 30px;
+				display: block;
+				line-height: 20px;
+				text-align: center;
+				color: #000000;
+				cursor: pointer;
+				text-decoration: none;
+			}
+			.sort li:not(:last-child){
+				border-right: 2px solid lightgrey;
+			}
+			.carlist{
+				width: 1200px;
+				height: auto;
+				border-top: 1px solid lightgrey;
+				margin: 0px auto 30PX;
+			}
+			.carlist .car{
+				width: 280px;
+				height: auto;
+				margin: 10px 10px 0 10px
+				cursor: pointer;
+			}
+			.car:hover{
+				box-shadow: 0 0 20px lightgrey;
+			}
+			.car img{
+				padding: 5px;
+				max-width: 100%;
+				height: auto;
+			}
+			.car h2{
+				width: 300px;
+				height: 20px;
+				line-height: 20px;
+				margin: 0px 5px;
+				font-size: 13px;	
+				display: inline-block;
+				overflow: hidden;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				text-decoration: none;
+			}
+			.car .c-i{
+				color: darkgrey;
+				width: 300px;
+				height: 20px;
+				font-size: 14px;
+				line-height: 20px;
+				margin: 2px 5px;
+			}
+			.c-i span{
+				margin: 0px 4px;
+			}
+			.car .c-price{
+				color: orangered;
+				width: 200px;
+				height: 20px;
+				font-size: 20px;
+				line-height: 20px;
+				margin: 0px 5px;
+			}
+			.c-price span{
+				font-size: 12px;
+				margin: 0px 4px;
+			}
+			#o_price{
+				color: darkgrey;
+			}
+			.footer{
+				width: 100%;
+				margin: 20px auto 0px;
+				padding: 20px auto 0px;
+				background-color: #2a2c37;
+			}
+			.footer img{
+				width: 100px;
+				height: 100px;
+				margin: 30px 10px ;
+			}
+			.foot{
+				position: relative;
+				width: 1200px;
+				margin: 0 auto;
+			}
+			.phone{
+				color: #B8B8B8;
+				font-size: 13px;
+				display: inline-block;
+				position: absolute;
+				top: 30px;
+				left: 140px;
+			}
+			.info{
+				color: #B8B8B8;
+				font-size: 12px;
+				float:right;	
+				margin-left: 50px;
+				margin-top: 30px;
+			}
+			.code{
+				width: 200px;
+				height: 160px;
+				margin: 30px 30px;
+			}
+			.code img{
+				max-width: 100%;
+			}
+			#qq{
+				position: absolute;
+				top: -30px;
+				left: 500px;	
+			}
+			#wechart{
+				position: absolute;
+				top: -30px;
+				left: 650px;	
+			}
+		</style>	
+	</head>
+	<body id="b">
+		<div class="header navbar-fixed-top">
+			<ul class="right">
+				<li><a href="">首页</a></li>
+				<li><a id="active buy_car" href="buy_car.html">我要买车</a></li>
+				<li><a id="sale_car" href="sale_car.html">我要卖车</a></li>
+				<li><a href="">联系我们</a></li>
+			</ul>
+			<div class="tel">热线电话：400-820-8320</div>
+			<span class="pic glyphicon glyphicon-user" id ="login" aria-hidden="true">&nbsp;登录</span>
+		</div>
+		<div id="photo">
+			<img src="img/图片2.png"/>
+		</div>
+		<div class="select">
+			<!--品牌 -->
+			<dl class="clearfix">
+				<dt>品牌</dt>    
+				<dd>
+					<div class="dd-top">
+						<span class="a-box">
+							<button class="active" type="submit" name="" id="不限" value="不限" />不限</button>
+							<button type="submit" name="" id="" value="大众" />大众</button>
+							<button type="submit" name="" id="" value="奔驰" />奔驰</button>
+							<button type="submit" name="" id="" value="本田" />本田</button>
+							<button type="submit" name="" id="" value="丰田" />丰田</button>
+							<button type="submit" name="" id="" value="别克" />别克</button>
+							<button type="submit" name="" id="" value="日产" />日产</button>
+							<button type="submit" name="" id="" value="福特" />福特</button>
+							<button type="submit" name="" id="" value="现代" />现代</button>
+							<button type="submit" name="" id="" value="宝马" />宝马</button>
+							<button type="submit" name="" id="" value="奥迪" />奥迪</button>
+							<button type="submit" name="" id="" value="吉利" />吉利</button>
+							<button type="submit" name="" id="" value="哈弗" />哈弗</button>
+							<button type="submit" name="" id="" value="雪佛兰" />雪佛兰</button>
+							<button type="submit" name="" id="" value="马自达" />马自达</button>
+							<button type="submit" name="" id="" value="其他" />其他</button>
+						</span>
+					</div>
+				</dd>
+			</dl>
+			
+			<!--车系-->
+			<dl class="clearfix">
+				<dt>车系</dt>
+				<dd>
+					<div class="dd-top">
+						<span class="a-box">
+							<button class="active" type="submit" name="" id="" value="不限" />不限</button>
+							<button type="submit" name="" id="" value="轩逸" />轩逸</button>
+							<button type="submit" name="" id="" value="奔驰C级" />奔驰C级</button>
+							<button type="submit" name="" id="" value="福克斯" />福克斯</button>
+							<button type="submit" name="" id="" value="朗逸" />朗逸</button>
+							<button type="submit" name="" id="" value="高尔夫" />高尔夫</button>
+							<button type="submit" name="" id="" value="速腾" />速腾</button>
+							<button type="submit" name="" id="" value="迈腾" />迈腾</button>
+							<button type="submit" name="" id="" value="哈弗H6" />哈弗H6</button>
+							<button type="submit" name="" id="" value="思域" />思域</button>
+							<button type="submit" name="" id="" value="卡罗拉" />卡罗拉</button>
+							<button type="submit" name="" id="" value="宝来" />宝来</button>
+							<button type="submit" name="" id="" value="英朗" />英朗</button>
+							<button type="submit" name="" id="" value="其他" />其他</button>
+						</span>
+					</div>
+				</dd>
+			</dl>
+			
+			<!--价格-->
+			<dl class="clearfix">
+				<dt>价格</dt>
+				<dd>
+					<div class="dd-top">
+						<span class="a-box">
+							<button class="active" type="submit" name="asd" id="" value="不限" />不限</button>
+							<button type="submit" name="" id="" value="0-3" />3万以下</button>
+							<button type="submit" name="" id="" value="3-5" />3-5万</button>
+							<button type="submit" name="" id="" value="5-7" />5-7万</button>
+							<button type="submit" name="" id="" value="7-9" />7-9万</button>
+							<button type="submit" name="" id="" value="9-12" />9-12万</button>
+							<button type="submit" name="" id="" value="16-20" />16-20万</button>
+							<button type="submit" name="" id="" value="20-999" />20万以上</button>
+							<form action="" method="post" class="price">
+								<input type="text" size="4" class="min_price_num"/><span>&nbsp;-</span>
+								<input type="text" size="4" class="max_price_num"/><span>&nbsp;&nbsp;万</span>
+								<input type="submit" name="" id="confirm" value="确定" />
+							</form>
+							
+						</span>
+					</div>
+				</dd>
+			</dl>
+			
+			<!--更多-->
+			<dl class="clearfix">
+				<dt>更多</dt>
+				<dd>
+					<div class="dd-top">
+						<span class="a-box">
+							<select name="carage">
+								<option value="" selected disabled hidden>车龄</option> 
+								<option value="">不限</option> 
+								<option value="1">1年内</option>
+								<option value="3">3年内</option>
+								<option value="5">5年内</option>
+								<option value="8">8年内</option>
+							</select>
+							
+							<select name="carmile">
+								<option value="里程" selected disabled hidden>里程</option> 
+								<option value="不限">不限</option>
+								<option value="1">1万公里内</option>
+								<option value="3">3万公里内</option>
+								<option value="5">5万公里内</option>
+								<option value="8">8万公里内</option>
+								<option value="10">10万公里内</option>
+							</select>
+							
+							<select name="cartype">
+								<option value="" selected disabled hidden>排量</option> 
+								<option value="">不限</option>
+								<option value="1.0">1.0L以下</option>
+								<option value="1.0-1.6">1.0-1.6L</option>
+								<option value="1.6-2.0">1.6-2.0L</option>
+								<option value="2.0-3.0">2.0-3.0L</option>
+								<option value="3.0-4.0">3.0-4.0L</option>
+								<option value="4.0-999">4.0L以上</option>
+							</select>
+							
+							<select name="out">
+								<option value="" selected disabled hidden>变速箱</option> 
+								<option value="">不限</option>
+								<option value="手动">手动</option>
+								<option value="自动">自动</option>
+							</select>
+							
+						</span>
+					</div>
+				</dd>
+			</dl>
+		</div>
+		<div class="sort">
+			<ul>
+				<li><a href="">默认排序</a></li>
+				<li><a href="">
+					价格<span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+				</a></li>
+				<li><a href="">
+					里程<span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+				</a></li>
+				<li><a href="">
+					车龄<span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+				</a></li>
+			</ul>
+		</div>
+		
+		
+		<div class="carlist">
+			<div class="car" title="纳智捷 优6 SUV 2017款 改款 1.6T 新创型"  href="car.html" target="_self" >
+				<img src="https://image.guazistatic.com/gz01190506/15/50/25f80b2b06fe7b99c568e8d06027d41c.jpg@base@tag=imgScale&w=1200&h=800&c=1&m=2&q=88"/>
+				<h2>纳智捷 优6 SUV 2017款 改款 1.6T 新创型 </h2>
+				<div class="c-i">2018年<span class="icon">|</span>1.5万公里</div>
+				<div class="c-price">7.81<span class="icon">万</span><span id="o_price">12万</span></div>
+			</div>
+		</div>
+		
+		<div class="footer">
+			<div class="foot">
+				<img src="img/图片1.png">
+				<div class="phone">
+					咨询电话：400-820-8320&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(周一至周日8:00-21:00)<br/>
+					服务监督电话：400-066-8780&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(周一至周日9:00-18:00)<br/><br/>
+					互联网违法或不良信息举报联系方式：<br/>
+					邮箱：jubao@jiangcai.com&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;电话：010-8919-1670
+				</div>
+				<div id="qq" class="code">
+					<img src="img/qq.jpg"/>
+				</div>
+				<div id="wechart" class="code">
+					<img src="img/weixin.jpg"/>
+				</div>
+				<div class="info">
+					关于瓜子&nbsp;&nbsp;集团介绍&nbsp;&nbsp;加入我们&nbsp;&nbsp;联系我们&nbsp;&nbsp;服务保障&nbsp;&nbsp;隐私声明<br/>
+					服务条款&nbsp;&nbsp;营业执照&nbsp;&nbsp;环评公示<br /><br />
+					Copyright&nbsp;&nbsp;2020&nbsp;&nbsp;www.jiangcai.com&nbsp;&nbsp;AII&nbsp;&nbsp;Rights&nbsp;&nbsp;Reserved
+				</span>
+			</div>	
+		</div>
+	</body>
+	
+	<script type="text/javascript">	
+
+	
+	$(function(){				
+		
+		$(".a-box button").click(function(){
+ 			$(this).toggleClass("active");
+ 			$(this).siblings().removeClass("active");
+  		});
+		
+		$(".min_price_num").setminDefauleValue();
+		$(".max_price_num").setmaxDefauleValue();
+	});
+	
+	
+	clickToHref();
+	function clickToHref() {
+	    var eles = document.querySelectorAll("div[href]");
+	    eles.forEach(function (item) {
+	        item.addEventListener("click", function () {
+	            var href = item.getAttribute("href");
+	            var target = item.getAttribute("target");
+	            if (!target) {
+	                location.href = href;
+	            }
+	            else {
+	                window.open(href, target);
+	            }
+	        });
+	    })
+	}
+	
+	//设置input默认值
+	$.fn.setminDefauleValue = function() {
+	    var defauleValue = 0;
+		$(this).val(defauleValue).css("color","#FFFFFF");
+	 
+	    return this.each(function() {		
+	        $(this).focus(function() {
+	            if ($(this).val() == defauleValue) {
+	                $(this).val("").css("color","#000");//输入值的颜色
+	            }
+	        }).blur(function() {
+	            if ($(this).val() == "") {
+	                $(this).val(defauleValue).css("color","#FFFFFF");//默认值的颜色
+	            }
+	        });
+	    });
+	}
+	//设置input默认值
+	$.fn.setmaxDefauleValue = function() {
+	    var defauleValue = 999;
+		$(this).val(defauleValue).css("color","#FFFFFF");
+	 
+	    return this.each(function() {		
+	        $(this).focus(function() {
+	            if ($(this).val() == defauleValue) {
+	                $(this).val("").css("color","#000");//输入值的颜色
+	            }
+	        }).blur(function() {
+	            if ($(this).val() == "") {
+	                $(this).val(defauleValue).css("color","#FFFFFF");//默认值的颜色
+	            }
+	        });
+	    });
+	}
+
+</script>
+	
+</html>
